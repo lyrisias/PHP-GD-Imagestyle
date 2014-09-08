@@ -6,7 +6,7 @@ Edit your images with a single line
 * PHP 5+
 * PHP-GD
 
-@link https://github.com/lyrisias/gd_imagestyle
+@link https://github.com/lyrisias/gd_imagestyle  
 @author John Athanasiadis <joe.athanasiadis@gmail.com>  
 @copyright 2014 John Athanasiadis  
 @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License  
