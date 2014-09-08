@@ -6,7 +6,7 @@ Edit your images with a single line
 * PHP 5+
 * PHP-GD
 
-@link https://github.com/PHPMailer/PHPMailer/ The PHPMailer GitHub project  
+@link https://github.com/lyrisias/gd_imagestyle
 @author John Athanasiadis <joe.athanasiadis@gmail.com>  
 @copyright 2014 John Athanasiadis  
 @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License  
@@ -17,7 +17,7 @@ FITNESS FOR A PARTICULAR PURPOSE.
 ###WHAT IS IMAGESTYLE?
 
 imagestyle is an implement for the PHP/GD library.  
-*You can easily edit your images in a simple line:*
+*You can edit your images with a single line.*
 
 e.g. #1 - *Resize a big image from 1000x1000 pixels to 200x200*
 ```php
