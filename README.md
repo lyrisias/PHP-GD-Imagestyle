@@ -16,7 +16,7 @@ FITNESS FOR A PARTICULAR PURPOSE.
 
 ###WHAT IS IMAGESTYLE?
 
-imagestyle is an implement for the PHP/GD library.  
+Imagestyle is a function which works as an implement for the PHP/GD library.  
 *You can edit your images with a single line.*
 
 e.g. #1 - *Resize a big image from 1000x1000 pixels to 200x200*
