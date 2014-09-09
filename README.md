@@ -192,6 +192,7 @@ Makes the image smoother.
 ```php
 imagestyle($image,'smooth:100;'); 
 ```
+
 #####pixelate
 Applies pixelation effect to the image.
 *Values: >=0 pixels*
