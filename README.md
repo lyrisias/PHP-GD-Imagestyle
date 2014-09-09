@@ -23,13 +23,19 @@ e.g. #1 - *Resize a big image from 1000x1000 pixels to 200x200*
 ```php
 require_once('gd_imagestyle.php');
 $big_image = imagecreatefrompng('img/1.png');
-$new_image = imagestyle($big_image,'resize:200 200');
+$resized = imagestyle($big_image,'resize:200 200');
 ```
 e.g. #2 - *Crop a part of the big image and convert it to grayscale*
 ```php
 require_once('gd_imagestyle.php');
 $big_image = imagecreatefrompng('img/1.png');
-$new_image = imagestyle($big_image,'crop:200 200; grayscale:on;'); 
+$cropped = imagestyle($big_image,'crop:200 200; grayscale:on;'); 
+```
+e.g. #3 - *Create a centered thumbnail 200x200*
+```php
+require_once('gd_imagestyle.php');
+$big_image = imagecreatefrompng('img/1.png');
+$thumb = imagestyle($big_image,'autosize:200 200;'); 
 ```
 
 ###INSTALLATION
