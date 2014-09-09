@@ -194,7 +194,7 @@ imagestyle($image,'smooth:100;');
 ```
 
 #####pixelate
-Applies pixelation effect to the image.
+Applies pixelation effect to the image.  
 *Values: >=0 pixels*
 >Apply the filter
 ```php
