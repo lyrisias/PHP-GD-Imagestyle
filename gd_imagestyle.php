@@ -1,6 +1,6 @@
 <?php
 /* 
- * @link https://github.com/lyrisias/gd_imagestyle
+ * @link https://github.com/lyrisias/PHP-GD-Imagestyle
  * @author John Athanasiadis <joe.athanasiadis@gmail.com>
  * @copyright 2014 John Athanasiadis
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
