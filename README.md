@@ -129,7 +129,7 @@ imagestyle($image,'brightness:100;');
 ```
 
 #####contrast
-Changes the contrast of the image. 
+Changes the contrast of the image.  
 *Values: __-255 ~ 255__*
 >Apply the filter
 ```php
@@ -137,7 +137,7 @@ imagestyle($image,'contrast:-100;');
 ```
 
 #####colorize
-Colorize the image.
+Colorize the image.  
 *Values: __none | r.g.b__*  
 *__none__= do nothing, __r.g.b__=string formatted 255.255.255*
 >Apply the filter
@@ -146,7 +146,7 @@ imagestyle($image,'colorize:0.160.0;');
 ```
 
 #####edgedetect
-Uses edge detection to highlight the edges in the image.
+Uses edge detection to highlight the edges in the image.  
 *Values: __on | off__*
 >Apply the filter
 ```php
@@ -154,7 +154,7 @@ imagestyle($image,'edgedetect:on;');
 ```
 
 #####emboss
-Embosses the image.
+Embosses the image.  
 *Values: __on | off__*
 >Apply the filter
 ```php
@@ -162,7 +162,7 @@ imagestyle($image,'emboss:on;');
 ```
 
 #####gaussian-blur
-Blurs the image using the Gaussian method.
+Blurs the image using the Gaussian method.  
 *Values: __on | off__*
 >Apply the filter
 ```php
@@ -170,7 +170,7 @@ imagestyle($image,'gaussian-blur:on;');
 ```
 
 #####selective-blur
-Blurs the image..
+Blurs the image.  
 *Values: __on | off__*
 >Apply the filter
 ```php
@@ -178,7 +178,7 @@ imagestyle($image,'selective-blur:on;');
 ```
 
 #####mean-removal
-Blurs the image.
+Uses mean removal to achieve a "sketchy" effect.  
 *Values: __on | off__*
 >Apply the filter
 ```php
@@ -186,7 +186,7 @@ imagestyle($image,'mean-removal:on;');
 ```
 
 #####smooth
-Makes the image smoother.
+Makes the image smoother.  
 *Values: __on | off__*
 >Apply the filter
 ```php
@@ -195,7 +195,7 @@ imagestyle($image,'smooth:100;');
 
 #####pixelate
 Applies pixelation effect to the image.  
-*Values: >=0 pixels*
+*Values: __>=0__ pixels*
 >Apply the filter
 ```php
 imagestyle($image,'pixelate:5;'); 
