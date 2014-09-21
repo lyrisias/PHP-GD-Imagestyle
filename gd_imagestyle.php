@@ -269,7 +269,10 @@ function imagestyle($src,$style){
 		}
 	}
 	/* APPLY STYLES */
-	$filtered_src = $src;
+	$w = imagesx($src);
+	$h = imagesy($src);
+	$filtered_src = imagecreatetruecolor($w, $h);
+	imagecopy($filtered_src, $src, 0, 0, 0, 0, $w, $h);
 	foreach($filters as $filter => $value){
 		// background 
 		if($filter=='background'){
