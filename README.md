@@ -6,7 +6,7 @@ Edit your images with a single line
 * PHP 5+
 * PHP-GD
 
-**@link** https://github.com/lyrisias/gd_imagestyle  
+**@link** https://github.com/lyrisias/PHP-GD-Imagestyle  
 **@author** John Athanasiadis <joe.athanasiadis@gmail.com>  
 **@copyright** 2014 John Athanasiadis  
 **@license** http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License  
@@ -23,13 +23,19 @@ e.g. #1 - *Resize a big image from 1000x1000 pixels to 200x200*
 ```php
 require_once('gd_imagestyle.php');
 $big_image = imagecreatefrompng('img/1.png');
-$new_image = imagestyle($big_image,'resize:200 200');
+$resized = imagestyle($big_image,'resize:200 200');
 ```
 e.g. #2 - *Crop a part of the big image and convert it to grayscale*
 ```php
 require_once('gd_imagestyle.php');
 $big_image = imagecreatefrompng('img/1.png');
-$new_image = imagestyle($big_image,'crop:200 200; grayscale:on;'); 
+$cropped = imagestyle($big_image,'crop:200 200; grayscale:on;'); 
+```
+e.g. #3 - *Create a centered thumbnail 200x200*
+```php
+require_once('gd_imagestyle.php');
+$big_image = imagecreatefrompng('img/1.png');
+$thumb = imagestyle($big_image,'autosize:200 200;'); 
 ```
 
 ###INSTALLATION
@@ -53,11 +59,11 @@ Draws a background color to the image. Works only for images with transparency
 *Values: __none | r.g.b__*  
 *__none__= no background, __r.g.b__=string formatted 255.255.255*
 >Do nothing to the background  
-```
+```php
  imagestyle($image,'background:none'); 
 ```
 >Draw a red background  
-```
+```php
 imagestyle($image,'background:255.0.0'); 
 ```
 
@@ -66,19 +72,19 @@ Resizes the image.
 *Values: __w h | w h min-w min-h | w h min-w min-h max-w max-h__*  
 *__w__=int width, __h__=int height*
 >Resize the image to height 100 and width auto 
-```
+```php
 imagestyle($image,'resize:0 100'); 
 ```
 >Resize the image to width 500 and height 300
-```
+```php
 imagestyle($image,'resize:500 300'); 
 ```
 >Resize the image to width 500 and height auto, but if after the resize,the height is less than 450 it will resize it again with height 450 and with auto
-```
+```php
 imagestyle($image,'resize:500 0 0 450'); 
 ```
 >Resize the image to width 750 but if after the resize, the height is less than 350 it will resize it again with height 350 and with auto,but if after the second resize the width is greater than 800 it will resize the image for one more time with width 800 and height auto
-```
+```php
 imagestyle($image,'resize:700 0 0 350 800 0'); 
 ```
 
@@ -87,11 +93,11 @@ Takes a part of the image.
 *Values: __w h | l t w h__*  
 *__w__=int width, __h__=int height __l__=int left __t__=int top*
 >Take the part *x1=0,y1=0,x2=100,y2=100* 
-```
+```php
 imagestyle($image,'crop:100 100'); 
 ```
 >Take the part *x1=50,y1=20,x2=150,y2=120* 
-```
+```php
 imagestyle($image,'crop:50 20 100 100');  
 ```
 
@@ -100,7 +106,7 @@ Creates a thumbnail from the image on the given size. It's good for thumbnails a
 *Values: __w h__*  
 *__w__=int width, __h__=int height*
 >Resize the image to the 100x100 and crop it to the center. 
-```
+```php
 imagestyle($image,'autosize:100 100');  
 ```
 
@@ -108,7 +114,7 @@ imagestyle($image,'autosize:100 100');
 Reverses all colors of the image.  
 *Values: __on | off__*
 >Apply the filter
-```
+```php
 imagestyle($image,'negative:on;');   
 ```
 
@@ -116,7 +122,7 @@ imagestyle($image,'negative:on;');
 Converts the image into grayscale.  
 *Values: __on | off__*
 >Apply the filter
-```
+```php
 imagestyle($image,'grayscale:on;');  
 ```
 
@@ -124,79 +130,80 @@ imagestyle($image,'grayscale:on;');
 Changes the brightness of the image.  
 *Values: __-255 ~ 255__*
 >Apply the filter
-```
+```php
 imagestyle($image,'brightness:100;'); 
 ```
 
 #####contrast
-Changes the contrast of the image. 
+Changes the contrast of the image.  
 *Values: __-255 ~ 255__*
 >Apply the filter
-```
+```php
 imagestyle($image,'contrast:-100;'); 
 ```
 
 #####colorize
-Colorize the image.
+Colorize the image.  
 *Values: __none | r.g.b__*  
 *__none__= do nothing, __r.g.b__=string formatted 255.255.255*
 >Apply the filter
-```
+```php
 imagestyle($image,'colorize:0.160.0;'); 
 ```
 
 #####edgedetect
-Uses edge detection to highlight the edges in the image.
+Uses edge detection to highlight the edges in the image.  
 *Values: __on | off__*
 >Apply the filter
-```
+```php
 imagestyle($image,'edgedetect:on;'); 
 ```
 
 #####emboss
-Embosses the image.
+Embosses the image.  
 *Values: __on | off__*
 >Apply the filter
-```
+```php
 imagestyle($image,'emboss:on;'); 
 ```
 
 #####gaussian-blur
-Blurs the image using the Gaussian method.
+Blurs the image using the Gaussian method.  
 *Values: __on | off__*
 >Apply the filter
-```
+```php
 imagestyle($image,'gaussian-blur:on;');  
 ```
 
 #####selective-blur
-Blurs the image..
+Blurs the image.  
 *Values: __on | off__*
 >Apply the filter
-```
+```php
 imagestyle($image,'selective-blur:on;'); 
 ```
 
 #####mean-removal
-Blurs the image.
+Uses mean removal to achieve a "sketchy" effect.  
 *Values: __on | off__*
 >Apply the filter
-```
+```php
 imagestyle($image,'mean-removal:on;'); 
 ```
 
 #####smooth
-Makes the image smoother.
+Makes the image smoother.  
 *Values: __on | off__*
 >Apply the filter
-```
+```php
 imagestyle($image,'smooth:100;'); 
 ```
+
 #####pixelate
-Applies pixelation effect to the image.
-*Values: >=0 pixels*
+Applies pixelation effect to the image.  
+*Values: __>=0__ pixels*
 >Apply the filter
-```
+```php
 imagestyle($image,'pixelate:5;'); 
 ```
 
