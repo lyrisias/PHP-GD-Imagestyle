@@ -406,10 +406,10 @@ function imagestyle($src,$style){
 				$autosized_h = $filters['autosize-height'];
 				if($w>$h){
 					$new_h = $autosized_h;
-					$new_w = ($new_h * $w) / $h;
+					$new_w = ceil( ($new_h * $w) / $h );
 				}else{
 					$new_w = $autosized_w;
-					$new_h = ($new_w * $h) / $w;
+					$new_h = ceil( ($new_w * $h) / $w );
 				}
 				$filtered_src=imagestyle($filtered_src,"resize:{$new_w} {$new_h};");
 
