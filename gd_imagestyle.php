@@ -102,6 +102,7 @@ function imagestyle($src,$style){
 	$filters['mean-removal'] = 0; 		// 0 | 1
 	$filters['smooth'] = 0; 			// 0 ~ +100
 	$filters['pixelate'] = 0; 			// >=0
+	$filters['white-balance'] = 0; 		// 0 | 1
 	
 	
 	/* PARSE STYLES */
@@ -265,6 +266,10 @@ function imagestyle($src,$style){
 			// pixelate
 			else if($left_value=='pixelate'){ 
 				$filters['pixelate'] = (intval($right_value)>=0?intval($right_value):0);
+			}
+			// white-balance
+			else if($left_value=='white-balance'){ 
+				$filters['white-balance'] = ($right_value=='on'?1:0);
 			}
 		}
 	}
@@ -491,6 +496,53 @@ function imagestyle($src,$style){
 		else if($filter=='pixelate'){
 			if($value>0){
 				imagefilter($filtered_src, IMG_FILTER_PIXELATE,$value,true);
+			}
+		}
+		// white-balance 
+		else if($filter=='white-balance'){
+			if($value==1){ 
+				imagefilter($filtered_src, IMG_FILTER_BRIGHTNESS,30);
+				// analysis
+				$Analysis=array('red'=>array(),'green'=>array(),'blue'=>array(),'alpha'=>array());
+				$w = imagesx($filtered_src);
+				$h = imagesy($filtered_src);
+				for ($x = 0; $x < $w; $x++){
+					for ($y = 0; $y < $h; $y++){
+						$OriginalPixel = @imagecolorsforindex($filtered_src, @imagecolorat($filtered_src, $x, $y) );
+						@$Analysis['red'][$OriginalPixel['red']]++;
+						@$Analysis['green'][$OriginalPixel['green']]++;
+						@$Analysis['blue'][$OriginalPixel['blue']]++;
+						@$Analysis['alpha'][$OriginalPixel['alpha']]++;
+					}
+				}
+				$keys = array('red', 'green', 'blue', 'alpha');
+				foreach ($keys as $key){
+					ksort($Analysis[$key]);
+				}
+				//effect
+				$targetPixel = array('red' => max(array_keys($Analysis['red'])),
+                'green' => max(array_keys($Analysis['green'])),
+                'blue' => max(array_keys($Analysis['blue']))
+                );
+				$grayValue = round(($targetPixel['red'] * 0.30) + ($targetPixel['green'] * 0.59) + ($targetPixel['blue'] * 0.11));
+				$scaleR = $grayValue / $targetPixel['red'];
+				$scaleG = $grayValue / $targetPixel['green'];
+				$scaleB = $grayValue / $targetPixel['blue'];
+				for ($x = 0; $x < $w; $x++){
+					for ($y = 0; $y < $h; $y++){
+						$currentPixel = @imagecolorsforindex($filtered_src, @imagecolorat($filtered_src, $x, $y) );
+						$newColor = @imagecolorallocatealpha($filtered_src, 
+							max(0, min(255, round($currentPixel['red'] * $scaleR))),
+							max(0, min(255, round($currentPixel['green'] * $scaleG))),
+							max(0, min(255, round($currentPixel['blue'] * $scaleB))),
+							intval($currentPixel['alpha']) 
+							);
+						imagesetpixel($filtered_src, $x, $y, $newColor);
+					}
+				}
+				//end effect
+				imagefilter($filtered_src, IMG_FILTER_BRIGHTNESS,10);
+				imagefilter($filtered_src, IMG_FILTER_CONTRAST,-15);
 			}
 		}
 	}
