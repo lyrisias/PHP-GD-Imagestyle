@@ -207,6 +207,13 @@ Applies pixelation effect to the image.
 imagestyle($image,'pixelate:5;'); 
 ```
 
+#####white-balance
+Auto white-balance  
+*Values: __on | off__*
+>Apply the filter
+```php
+imagestyle($image,'white-balance:on;'); 
+```
  
 I hope it will help you.
  
