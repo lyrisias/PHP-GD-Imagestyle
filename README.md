@@ -1,6 +1,5 @@
 PHP/GD imagestyle 
 =================
-Edit your images with a single line
 
 ### Requirements:
 * PHP 5+
@@ -17,7 +16,7 @@ FITNESS FOR A PARTICULAR PURPOSE.
 ###WHAT IS IMAGESTYLE?
 
 Imagestyle is a function which works as an implement for the PHP/GD library.  
-*You can edit your images with a single line.*
+*You can edit your images in a single line.*
 
 e.g. #1 - *Resize a big image from 1000x1000 pixels to 200x200*
 ```php
